@@ -27,6 +27,22 @@ public class ShoppingListServiceTests
         Assert.Equal("Lactose-free", result.Notes);
     }
 
+    [Theory]
+    [InlineData(3)]
+    [InlineData(0)]
+    [InlineData(100)]
+    public void Return_CorrectListSize(int expected)
+    {
+        var service = new ShoppingListService();
+        for (int i = 0; i < expected; i++)
+        {
+            service.Add("Milk", 2, "Lactose-free");
+            
+        }
+
+        var actual = service.GetAll();
+        Assert.Equal(expected, actual.Count);
+    }
     
     
     
