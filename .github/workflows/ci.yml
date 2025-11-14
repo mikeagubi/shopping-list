@@ -47,6 +47,11 @@ jobs:
       - name: Build Code
         run: dotnet build
 
+      - name: Run tests
+        if: success()
+        run: dotnet test --no-build
+        
+
       - name: Print matrix values
         run: |
           echo "Running on OS: ${{ matrix.os }}"
