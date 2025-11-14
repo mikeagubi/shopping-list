@@ -46,7 +46,7 @@ Implementera ett "smart" kontext-steg som:
 - Använd conditional expressions (`if:`) för att anpassa output
 - Formatera outputen på ett tydligt sätt (inte bara rå JSON dump)
 
-### **5. Discord Webhook Notification**
+### **5. (Bonus) - Discord Webhook Notification**
 Skicka en notifikation till Discord när workflow är klar:
 - Skapa ett steg som kör **alltid** (även vid failure) med `if: always()`
 - Använd Discord webhook för att posta ett meddelande
@@ -60,13 +60,35 @@ Skicka en notifikation till Discord när workflow är klar:
 
 ---
 
-## 🔶 Valfria Utökningar som vi gärna vill se 😊
+## ✅ Acceptanskriterier
 
-### **Input Parameter**
-Lägg till en workflow input som:
-- Heter `environment`
-- Är en dropdown med valen `development` och `production` (utforska `type`)
-- Har `development` som default värde
+### **Grundläggande (Godkänt):**
+- [ ] Workflow-fil existerar på korrekt plats (`.github/workflows/ci.yml`)
+- [ ] Alla tre triggers fungerar (manuell, push till main, pull request)
+- [ ] Matrix build körs för alla 4 kombinationer (2 OS × 2 .NET versioner)
+- [ ] Build-steget lyckas för alla matrix-kombinationer
+- [ ] Test-steget körs endast om build lyckas
+- [ ] Test-steget passerar för alla matrix-kombinationer
+- [ ] Context intelligence visar rätt information baserat på trigger typ
+- [ ] (Bonus) - Discord webhook skickar notifikation med korrekt status och information
+
+---
+
+## 💡 Implementeringstips
+
+- Börja enkelt med bara triggers och matrix, bygg sedan ut steg för steg
+- Testa workflow med manuell trigger först
+- Kontrollera syntax noga - YAML är känsligt för indentation
+- Använd "Actions" tab i GitHub för att se detaljerade loggar
+- Matrix skapar 4 separata jobb (2 OS × 2 .NET versioner)
+- Läs GitHub Actions dokumentationen för att hitta fler funktioner och möjligheter
+
+**Lycka till! 🚀**
+
+---
+
+## 🔶 Valfria Utökningar som vore kul att se 😊
+Här är idéer på extra funktionaliteter som ni antigen kan implementera i samma workflow eller i nya.
 
 ### **Environment Simulation**
 - Konfigurera jobbet att köra i den miljö som specificeras via input
@@ -108,34 +130,5 @@ Lägg till en workflow input som:
 - Implementera `needs:` dependencies mellan jobs
 - Bonus: Skapa ett deployment-steg som endast körs om alla tester passerar
 
----
-
-**💡 Egna Kreativa Tillägg:**
+### **💡 Egna Kreativa Tillägg:**
 Utöver ovanstående utökningar uppmuntrar vi er att tänka utanför boxen! Lägg gärna till egna funktioner som tillför värde till er CI/CD pipeline - t.ex. custom badges, test coverage visualisering, automatisk versioning, säkerhetsscanning, Docker images, eller något helt annat. Kvalitet över kvantitet - ett väl implementerat tillägg är bättre än flera halvfärdiga funktioner!
-
----
-
-## ✅ Acceptanskriterier
-
-### **Grundläggande (Godkänt):**
-- [ ] Workflow-fil existerar på korrekt plats (`.github/workflows/ci.yml`)
-- [ ] Alla tre triggers fungerar (manuell, push till main, pull request)
-- [ ] Matrix build körs för alla 4 kombinationer (2 OS × 2 .NET versioner)
-- [ ] Build-steget lyckas för alla matrix-kombinationer
-- [ ] Test-steget körs endast om build lyckas
-- [ ] Test-steget passerar för alla matrix-kombinationer
-- [ ] Context intelligence visar rätt information baserat på trigger typ
-- [ ] Discord webhook skickar notifikation med korrekt status och information
-
----
-
-## 💡 Implementeringstips
-
-- Börja enkelt med bara triggers och matrix, bygg sedan ut steg för steg
-- Testa workflow med manuell trigger först
-- Kontrollera syntax noga - YAML är känsligt för indentation
-- Använd "Actions" tab i GitHub för att se detaljerade loggar
-- Matrix skapar 4 separata jobb (2 OS × 2 .NET versioner)
-- Läs GitHub Actions dokumentationen för att hitta fler funktioner och möjligheter
-
-**Lycka till! 🚀**
