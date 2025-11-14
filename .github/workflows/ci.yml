@@ -14,8 +14,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🔔 Start workflow
-        run: echo "Workflow started..."
 
       - name: 📃 Show runtime context
         run: |
@@ -23,6 +21,23 @@ jobs:
           echo "Branch: ${{ github.ref }}"
           echo "Workflow: ${{ github.workflow }}"
           echo "Actor: ${{ github.actor }}"
-          echo "OS: ${{ runner.os }}
+          echo "OS: ${{ runner.os }}"
+
+  build-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5.0.0
+
+      - name: Install .NET 9
+        uses: actions/setup-dotnet@v5.0.0
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Build Code
+        run: dotnet build
+
+      
   
       
