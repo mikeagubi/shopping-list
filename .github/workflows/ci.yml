@@ -23,6 +23,6 @@ jobs:
           echo "Branch: ${{ github.ref }}"
           echo "Workflow: ${{ github.workflow }}"
           echo "Actor: ${{ github.actor }}"
-          echo "OS: ${{ Runner.os }}
+          echo "OS: ${{ runner.os }}
   
       
